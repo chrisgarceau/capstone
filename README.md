@@ -1,3 +1,3 @@
 # capstone
 ![My Image](frontendPics/homePage.png)
-![My Image](frontendPics/MLPage.png)
+![My Image](frontendPics/MLpage.png)
