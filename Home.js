@@ -25,7 +25,7 @@ export function HomeScreen() {
       }
     }, [value])
 
-    // initial API call
+    // initial Google Sheets API call
     useEffect(() => {
       let data = async () => {
         setValue(await FetchData());
@@ -91,9 +91,7 @@ export function HomeScreen() {
                 </Text>
                 <Text
                 style={{
-                    fontColor: '#000000',
                     fontSize: 15,
-                    fontWeight: "",
                     marginRight: 15,
                     color: "#000000",
                     marginTop: 2
@@ -103,13 +101,12 @@ export function HomeScreen() {
                 <Text
                 style={{
                     fontSize: 15,
-                    fontWeight: "",
                     marginRight: 15,
                     color: "#000000",
                     marginTop: 0,
                     marginBottom: 10
                     }}>
-                The Bronx, NY 10463
+                Bronx, NY 10463
                 </Text>
                 <Button
                 style={{
@@ -127,7 +124,7 @@ export function HomeScreen() {
                     style={styles.title}>Current capacity:{}
                 </Text>
                 <Text style={styles.paragraph}>
-                    {lastValueIndex ? value[lastValueIndex - 1][4] : "loading..."} {" / 25  "}
+                    {lastValueIndex ? value[lastValueIndex - 1][4] : "loading..."} {"/ 25  "}
                 </Text>
                 <Text 
                     style={styles.title}>Available spots:{}
@@ -144,7 +141,7 @@ export function HomeScreen() {
   // styles 
   const styles = StyleSheet.create({
     container: {
-      margin: 12,
+      margin: 10,
       borderWidth: 0,
       borderRadius: 15,
       backgroundColor: "#228647",
@@ -154,12 +151,11 @@ export function HomeScreen() {
       display: "flex",
       flexDirection: "row",
       justifyContent: "flex-start",
-      marginBottom: 10,
+      marginBottom: 5,
       flexWrap: "wrap",
     },
     title: {
       fontSize: 20,
-      fontWeight: "",
       marginRight: 15,
       color: "#ffffff"
     },

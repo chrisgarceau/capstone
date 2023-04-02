@@ -21,7 +21,6 @@ export function MyTabs() {
       component={HomeScreen}
       options={{
         tabBarLabel: "Home",
-        tabBarLabelStyle: {focused: false},
         tabBarIcon: ({ name, color, size }) => (
           <MaterialCommunityIcons name="car-multiple" color={"#228647"} size={31} />
         ),
