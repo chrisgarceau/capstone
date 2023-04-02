@@ -1,12 +1,8 @@
-import React from "react";
-import { ScrollView, Text} from 'react-native';
+import React, {useEffect, useState} from "react";
+import { ScrollView, Text, View, ActivityIndicator, StyleSheet} from 'react-native';
 import {LineChart} from 'react-native-chart-kit'
-import { StyleSheet } from "react-native";
 import { Card } from "react-native-paper";
-import { useEffect, useState } from "react";
 import FetchPredictionData from "./FetchPredictionData";
-import {ActivityIndicator, View} from 'react-native';
-
 
 
 // Variables to display current day of the week
@@ -17,8 +13,7 @@ const dayOfWeek = daysOfWeek[today.getDay()];
 
 // MACHINE LEARNING INSIGHTS SCREEN
 export function MLScreen() {
-    
-     // state variables
+  // state variables
   const [value, setValue] = useState();
   const [lastValueIndex, setLastValueIndex] = useState(0);
   const [arr, setMyArray] = useState([]);
@@ -34,7 +29,7 @@ export function MLScreen() {
     fetchData();
   }, []);
 
-  // update lastValueIndex whenever value changes and populate myArray
+  // set lastValueIndex and populate arr (array) with Google Sheet data
   useEffect(() => {
     if (value) {
       setLastValueIndex(value.length);
@@ -44,12 +39,14 @@ export function MLScreen() {
     }
   }, [value, lastValueIndex]);
 
+  // check if arr is still being populated
   useEffect(() => {
     if (arr.length > 0) {
       setIsLoading(false);
     }
   }, [arr]);
 
+  // data that LineChart uses to display graph / data points
   const data = {
     labels: ['6AM', '8', '10', '12PM', '2', '4', '6', '8', '10', '12AM'],
     datasets: [
@@ -58,9 +55,11 @@ export function MLScreen() {
       },
     ],
   };
-    
+
+  // test to see if arr is populated correctly
   console.log(arr);
 
+  // ActivityIndicator style
   const stylesLoader = StyleSheet.create({
     container: {
       flex: 1,
@@ -73,11 +72,13 @@ export function MLScreen() {
     },
   });
 
+  // if statement to check if arr is still being populated / loading
+  // if arr is still being populated, display loading indicator
   if (isLoading) {
     return (
       <View style={[stylesLoader.container, stylesLoader.horizontal]}>
-    <ActivityIndicator size="large" />
-  </View>
+        <ActivityIndicator size="large" />
+      </View>
     );
   }
 
@@ -151,7 +152,7 @@ const chartConfig = {
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
     strokeWidth: 0, // optional, default 3
     barPercentage: 0.75,
-    useShadowColorFromDataset: false// optional
+    useShadowColorFromDataset: false // optional
   };
   
 const stylesML = StyleSheet.create ({
@@ -175,5 +176,3 @@ const stylesML = StyleSheet.create ({
       marginTop: 5
     }
   })
-
-  

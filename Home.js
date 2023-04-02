@@ -1,9 +1,8 @@
-import React from "react";
-import { ScrollView, ActivityIndicator, Linking, Text, View , RefreshControl, MaskedViewComponent} from 'react-native';
-import { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, ActivityIndicator, Linking, Text, RefreshControl, StyleSheet} from 'react-native';
 import { Button, Card } from "react-native-paper";
 import FetchData from "./FetchData";
+
 
 // HOME SCREEN 
 export function HomeScreen() {
