@@ -45,9 +45,13 @@ export function HomeScreen() {
     if (!value) {
       return (
         <ActivityIndicator
+        style={{
+          marginTop: 350
+          }}
           size = "large"
           animating = {true}
-          color = "#228647"
+          color = "#808080"
+          justifyContent = 'center'
         />
       );
     }
