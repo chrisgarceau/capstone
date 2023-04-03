@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { ScrollView, Text, View, ActivityIndicator, StyleSheet} from 'react-native';
+import { ScrollView, Text, View, ActivityIndicator, RefreshControl, StyleSheet} from 'react-native';
 import {LineChart} from 'react-native-chart-kit'
 import { Card } from "react-native-paper";
 import FetchPredictionData from "./FetchPredictionData";
@@ -13,7 +13,13 @@ const dayOfWeek = daysOfWeek[today.getDay()];
 
 // MACHINE LEARNING INSIGHTS SCREEN
 export function MLScreen() {
+  // For wait refresh function
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  
   // state variables
+  const [refreshing, setRefreshing] = useState(0);
   const [value, setValue] = useState();
   const [lastValueIndex, setLastValueIndex] = useState(0);
   const [arr, setMyArray] = useState([]);
@@ -72,6 +78,17 @@ export function MLScreen() {
     },
   });
 
+  // Refresh function which creates a new call to the API to read real-time data
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    async function fetchData() {
+      const data = await FetchPredictionData();
+      setValue(data);
+    }
+    fetchData();
+    wait(600).then(() => setRefreshing(false));
+  }, []);
+
   // if statement to check if arr is still being populated / loading
   // if arr is still being populated, display loading indicator
   if (isLoading) {
@@ -83,7 +100,14 @@ export function MLScreen() {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
+    <ScrollView contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }
+          >
         <Card style={stylesML.container}> 
             <Card.Content style={styles.content}>      
                 <Text style={stylesML.title}> {dayOfWeek} {} </Text>
@@ -142,7 +166,6 @@ export function MLScreen() {
     },
   });
   
-
 const chartConfig = {
     backgroundGradientFrom: "#1E2923",
     backgroundGradientFromOpacity: 0,
