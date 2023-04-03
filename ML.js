@@ -65,6 +65,17 @@ export function MLScreen() {
   // test to see if arr is populated correctly
   console.log(arr);
 
+
+  // if statement to check if arr is still being populated / loading
+  // if arr is still being populated, display loading indicator
+  if (isLoading) {
+    return (
+      <View style={[stylesLoader.container, stylesLoader.horizontal]}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   // ActivityIndicator style
   const stylesLoader = StyleSheet.create({
     container: {
@@ -88,16 +99,6 @@ export function MLScreen() {
     fetchData();
     wait(600).then(() => setRefreshing(false));
   }, []);
-
-  // if statement to check if arr is still being populated / loading
-  // if arr is still being populated, display loading indicator
-  if (isLoading) {
-    return (
-      <View style={[stylesLoader.container, stylesLoader.horizontal]}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}
