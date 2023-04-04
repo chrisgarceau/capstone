@@ -65,6 +65,16 @@ export function MLScreen() {
   // test to see if arr is populated correctly
   console.log(arr);
 
+  // Refresh function which creates a new call to the API to read real-time data
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    async function fetchData() {
+      const data = await FetchPredictionData();
+      setValue(data);
+    }
+    fetchData();
+    wait(600).then(() => setRefreshing(false));
+  }, []);
 
   // if statement to check if arr is still being populated / loading
   // if arr is still being populated, display loading indicator
@@ -76,7 +86,7 @@ export function MLScreen() {
     );
   }
 
-  // ActivityIndicator style
+  // ActivityIndicator style used in if statement above
   const stylesLoader = StyleSheet.create({
     container: {
       flex: 1,
@@ -88,17 +98,6 @@ export function MLScreen() {
       padding: 10,
     },
   });
-
-  // Refresh function which creates a new call to the API to read real-time data
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    async function fetchData() {
-      const data = await FetchPredictionData();
-      setValue(data);
-    }
-    fetchData();
-    wait(600).then(() => setRefreshing(false));
-  }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}
