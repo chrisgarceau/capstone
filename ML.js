@@ -124,7 +124,7 @@ export function MLScreen() {
                 />
                 <Text 
                     style={stylesML.paragraph}>
-                    This line chart displays the results of our ML model based on Time Series
+                    This line chart displays the results of our ML model which uses Time Series
                     Analysis/Forecasting to predict real-time parking lot capacities relative to 
                     certain times and days of the week.
               
