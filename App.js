@@ -25,6 +25,5 @@ export default function App() {
         <MyTabs />
       </NavigationContainer>
     </AnimatedSplash>
-    
   );
 }
