@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { MyTabs } from './Tabs.js'
-import {useState, useEffect} from "react"
+import {useState} from "react"
 import AnimatedSplash from "react-native-animated-splash-screen";
 
 
