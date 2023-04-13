@@ -8,15 +8,15 @@ export function AboutProjectScreen() {
         <View style={styles.container}>
       <Text style={styles.heading}>Capstone: Smart Parking System</Text>
       <Text style={styles.paragraph}>
-      The project is a year long effort over two semesters. Our team consisted of two Electrical Engineering 
-      majors (Gustavo Aguilar and Eoin McGirl) and two Computer Engineering majors (Christopher Garceau and 
-      Christian Prashad).
+      The project was a year long effort over two semesters. Our team consisted of two Electrical Engineering 
+      majors, Gustavo Aguilar and Eoin McGirl, and two Computer Engineering majors, Christopher Garceau and 
+      Christian Prashad.
       </Text>
       <Text style={styles.heading}>Goal</Text>
       <Text style={styles.paragraph}>
-      The goal of the project is to create a system by integrating software and hardware that is capable 
-      of maintaining real-time parking lot capacities, use ML to generate parking lot capacities predictions 
-      based on certain times and days of the week, and allow users to view this data in an application.
+      The goal of our Smart Parking System was to create a system by integrating software and hardware that is capable 
+      of maintaining real-time parking lot capacities, use ML to generate parking lot capacity predictions 
+      based on certain times and days of the week, and allow users to view this data in our application.
       </Text>
       <Text style={styles.heading}>Hardware</Text>
       <Text style={styles.paragraph}>
@@ -91,6 +91,10 @@ export function AboutProjectScreen() {
       condensing and displaying the ML predictions in this application. The prediction results were then 
       exported to our databases and then fetched from our frontend using a Google Sheets API. Finally, the 
       prediction values were inserted into a React Native Chart Kit component and displayed to the user.
+      </Text>
+      <Text style={styles.paragraph}>
+      The ML program is automated and runs every midnight in order to display prediction data for the 
+      current day of the week. 
       </Text>
     </View>
     </ScrollView>
