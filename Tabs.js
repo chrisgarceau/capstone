@@ -43,7 +43,7 @@ export function MyTabs() {
           <MaterialCommunityIcons name="information-outline" color={"#228647"} size={31} />
         ),
       }}/>
-      <Tab.Screen 
+      {/* <Tab.Screen 
       name="About Us" 
       component={AboutUSScreen} 
       options={{
@@ -51,7 +51,7 @@ export function MyTabs() {
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="account-group" color={"#228647"} size={31} />
         ),
-      }}/>
+      }}/> */}
     </Tab.Navigator>
   );
 }
