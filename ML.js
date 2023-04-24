@@ -5,12 +5,6 @@ import { Card } from "react-native-paper";
 import FetchPredictionData from "./FetchPredictionData";
 
 
-// Variables to display current day of the week
-const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const today = new Date();
-const dayOfWeek = daysOfWeek[today.getDay()];
-
-
 // MACHINE LEARNING INSIGHTS SCREEN
 export function MLScreen() {
   // For wait refresh function
@@ -19,6 +13,7 @@ export function MLScreen() {
   }
   
   // state variables
+  const [dayOfWeek, setDayOfWeek] = useState('');
   const [refreshing, setRefreshing] = useState(0);
   const [value, setValue] = useState();
   const [lastValueIndex, setLastValueIndex] = useState(0);
@@ -26,6 +21,19 @@ export function MLScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   // useEffect Hooks
+  // Getting current day of the week
+  useEffect(() => {
+    const getDayOfWeek = () => {
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const date = new Date();
+      const dayIndex = date.getDay();
+      const day = days[dayIndex];
+      setDayOfWeek(day);
+    };
+
+    getDayOfWeek();
+  }, []);
+
   // initial Google Sheets API call
   useEffect(() => {
     async function fetchData() {
