@@ -5,15 +5,20 @@ import { Card } from "react-native-paper";
 import FetchPredictionData from "./FetchPredictionData";
 
 
+
 // MACHINE LEARNING INSIGHTS SCREEN
 export function MLScreen() {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const date = new Date();
+  const dayIndex = date.getDay();
+
   // For wait refresh function
   const wait = (timeout) => {
     return new Promise(resolve => setTimeout(resolve, timeout));
   }
   
   // state variables
-  const [dayOfWeek, setDayOfWeek] = useState('');
+  const [dayOfWeek, setDayOfWeek] = useState(days[dayIndex]);
   const [refreshing, setRefreshing] = useState(0);
   const [value, setValue] = useState();
   const [lastValueIndex, setLastValueIndex] = useState(0);
@@ -21,19 +26,6 @@ export function MLScreen() {
   const [isLoading, setIsLoading] = useState(true);
 
   // useEffect Hooks
-  // Getting current day of the week
-  useEffect(() => {
-    const getDayOfWeek = () => {
-      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      const date = new Date();
-      const dayIndex = date.getDay();
-      const day = days[dayIndex];
-      setDayOfWeek(day);
-    };
-
-    getDayOfWeek();
-  }, []);
-
   // initial Google Sheets API call
   useEffect(() => {
     async function fetchData() {
@@ -75,6 +67,7 @@ export function MLScreen() {
 
   // Refresh function which creates a new call to the API to read real-time data
   const onRefresh = React.useCallback(() => {
+    setDayOfWeek(days[dayIndex]); // updates day of week (state var.) on refresh
     setRefreshing(true);
     async function fetchData() {
       const data = await FetchPredictionData();
